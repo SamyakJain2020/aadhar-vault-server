@@ -48,9 +48,12 @@ router.post("/registerOrganisation", async function (req, res, next) {
     // get the contract instance
     const contract = new ethers.Contract(smartContractAddress, abi, signer);
     const tx = await contract.registerOrganisation(req.body.org_name);
-    await tx.wait();
+    // await tx.wait();
     console.log("tx: ", tx);
-    res.status(200).json(tx);
+    res.status(200).json({
+      status: "success",
+      message: "Organisation registered successfully",
+    });
   } catch (err) {
     res.status(404).send(err);
   }
@@ -75,4 +78,5 @@ router.post("/registerUser", async function (req, res, next) {
     res.status(404).send(err);
   }
 });
+
 module.exports = router;
