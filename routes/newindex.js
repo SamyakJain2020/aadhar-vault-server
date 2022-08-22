@@ -55,6 +55,7 @@ router.post("/registerNewAadhaarHolder", async function (req, res, next) {
           //console.log(contract);
           const tx=await contract.RegisterAgency(
             req.body.agencyname,
+            req.body.permission
           );
           console.log("Tx : ",tx);
          // await tx.wait();
